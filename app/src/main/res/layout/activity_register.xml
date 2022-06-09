@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background"
+    tools:context=".RegisterActivity">
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/edtxtregusername"
+        android:hint="Username"
+        android:textColorHint="@color/white"
+        android:textColor="@color/white"
+        android:background="#30ffffff"
+        android:padding="20dp"
+        android:layout_marginTop="150dp"
+        android:layout_marginBottom="30dp"
+        android:layout_marginStart="65dp"
+        android:layout_marginEnd="65dp"
+        />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/edtxtregpass"
+        android:hint="Password"
+        android:textColorHint="@color/white"
+        android:textColor="@color/white"
+        android:background="#30ffffff"
+        android:padding="20dp"
+        android:layout_below="@+id/edtxtregusername"
+        android:layout_marginStart="65dp"
+        android:layout_marginEnd="65dp"
+        android:layout_marginBottom="30dp"
+
+        />
+
+    <EditText
+        android:id="@+id/edtxtregrepass"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/edtxtregpass"
+        android:layout_marginStart="65dp"
+        android:layout_marginEnd="65dp"
+        android:layout_marginBottom="30dp"
+        android:hint="Confirm Password"
+        android:padding="20dp"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white"
+        android:background="#30ffffff"
+        />
+
+    <com.google.android.material.button.MaterialButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/signupbtn"
+        android:layout_below="@id/edtxtregrepass"
+        android:text="SIGN UP"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        android:backgroundTint="#EEBC1D"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="30dp"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/signupbtn"
+
+        >
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Do you have an account already ?"
+            android:textSize="15dp"
+            android:textStyle="italic"
+            android:textColor="@color/white"
+            android:id="@+id/txthasaccount"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="10dp"/>
+
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/signinpagebtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/txthasaccount"
+            android:layout_centerHorizontal="true"
+            android:backgroundTint="#EEBC1D"
+            android:text="GO TO LOGIN PAGE"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            />
+
+    </RelativeLayout>
+
+
+
+
+</RelativeLayout>

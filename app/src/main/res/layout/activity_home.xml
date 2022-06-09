@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background"
+    tools:context=".HomeActivity">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="IRTH"
+        android:textStyle="bold"
+        android:textColor="@color/white"
+        android:textSize="70dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="100dp"
+        android:layout_marginBottom="100dp"
+        android:id="@+id/logotxt"/>
+
+
+
+    <com.google.android.material.button.MaterialButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/introbtn"
+        android:layout_below="@+id/logotxt"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="30dp"
+        android:text="Introduction"
+        android:textColor="@color/white"
+        android:textSize="20dp"
+        android:background="@android:color/transparent"/>
+
+
+
+    <com.google.android.material.button.MaterialButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/calculbtn"
+        android:layout_below="@+id/introbtn"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="30dp"
+        android:text="Calculator"
+        android:textColor="@color/white"
+        android:textSize="20dp"
+        android:background="@android:color/transparent"/>
+
+
+
+    <com.google.android.material.button.MaterialButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/rulesbtn"
+        android:layout_below="@+id/calculbtn"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="30dp"
+        android:text="Rules of Inheritance"
+        android:textColor="@color/white"
+        android:textSize="20dp"
+        android:background="@android:color/transparent"/>
+
+</RelativeLayout>
