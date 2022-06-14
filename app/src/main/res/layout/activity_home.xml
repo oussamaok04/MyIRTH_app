@@ -4,16 +4,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background"
+    android:background="@drawable/b7"
     tools:context=".HomeActivity">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="IRTH"
+        android:text="MyIRTH"
         android:textStyle="bold"
-        android:textColor="@color/white"
-        android:textSize="70dp"
+        android:textColor="#b0c0e7"
+        android:textSize="60dp"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="100dp"
         android:layout_marginBottom="100dp"
@@ -27,10 +27,10 @@
         android:id="@+id/introbtn"
         android:layout_below="@+id/logotxt"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="30dp"
+        android:layout_marginBottom="40dp"
         android:text="Introduction"
         android:textColor="@color/white"
-        android:textSize="20dp"
+        android:textSize="17dp"
         android:background="@android:color/transparent"/>
 
 
@@ -41,10 +41,10 @@
         android:id="@+id/calculbtn"
         android:layout_below="@+id/introbtn"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="30dp"
+        android:layout_marginBottom="40dp"
         android:text="Calculator"
         android:textColor="@color/white"
-        android:textSize="20dp"
+        android:textSize="17dp"
         android:background="@android:color/transparent"/>
 
 
@@ -55,10 +55,10 @@
         android:id="@+id/rulesbtn"
         android:layout_below="@+id/calculbtn"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="30dp"
+        android:layout_marginBottom="40dp"
         android:text="Rules of Inheritance"
         android:textColor="@color/white"
-        android:textSize="20dp"
+        android:textSize="17dp"
         android:background="@android:color/transparent"/>
 
 </RelativeLayout>

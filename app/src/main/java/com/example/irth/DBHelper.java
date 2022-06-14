@@ -8,6 +8,11 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import androidx.annotation.Nullable;
 
+import com.example.heirs.Deceased;
+import com.example.heirs.Heir;
+
+import java.util.List;
+
 public class DBHelper extends SQLiteOpenHelper {
 
     public static final String DBNAME = "DbHeritage.db";
@@ -21,12 +26,46 @@ public class DBHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL("create table users (username TEXT primary key, password TEXT)");
+        db.execSQL("create table deceased (legacy TEXT, gender TEXT)");
+        db.execSQL("create table heir (heirtype TEXT,heirnb NUMBER, inheritedvalue NUMBER, blocked BOOLEAN, blockreason TEXT)");
+
     }
 
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("drop Table if exists user");
+        db.execSQL("drop Table if exists deceased");
+        db.execSQL("drop Table if exists heir");
+    }
+
+    public boolean adddeceased(Deceased deceased){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues cv = new ContentValues();
+        cv.put("legacy", deceased.getLegacy());
+        cv.put("gender", deceased.getGender());
+        long insertd = db.insert("deceased", null, cv);
+        if (insertd == -1)
+            return false;
+        else
+            return true;
+    }
+
+    public boolean addheirs(Heir heir){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues cv = new ContentValues();
+
+        cv.put("heirtype", heir.getheirtype());
+        cv.put("heirnb", heir.getHeirnb());
+        cv.put("blocked", heir.isBlocked());
+        cv.put("inheritedvalue", heir.getinheritedvalue());
+
+        long inserth = db.insert("heirs", null, cv);
+
+        if (inserth == -1)
+            return false;
+        else
+            return true;
     }
 
 

@@ -41,12 +41,12 @@ public final class StandardRules {
         for (Heir heir: theheirs) {
 
             if (heir.isDaughter()) {
-                noOfDaughters++;
+                noOfDaughters = heir.getHeirnb();
             }
             else if (heir.isSon()) {
-                noOfSons++;
+                noOfSons = heir.getHeirnb();
             } else if (heir.isWife()) {
-                noOfWives++;
+                noOfWives = heir.getHeirnb();
             }
         }
 
@@ -303,11 +303,11 @@ public final class StandardRules {
         for (Heir heir: theheirs){
 
             if (heir.isDaughter()){
-                noOfDaughters++;
+                noOfDaughters = heir.getHeirnb();
             } else if (heir.isWife()) {
-                noOfWives++;
+                noOfWives = heir.getHeirnb();
             } else if (heir.isSon()) {
-                noOfSons++;
+                noOfSons = heir.getHeirnb();
             }
         }
 
@@ -543,14 +543,14 @@ public final class StandardRules {
         return sonportion;
     }
 
-    private static double getGrandDaughterportion(Deceased deceased) {
+    public static double getGrandDaughterportion(Deceased deceased) {
         int noOfGrandDaughters = 0;
-        Double grandDaughterPortion = 0.0;
+        double grandDaughterPortion = 0.0;
         List<Heir> theHeirs = deceased.getHeirs();
         for(Heir theHeir : theHeirs)
         {
             if(theHeir.isGrandDaughter())
-                ++noOfGrandDaughters;
+                noOfGrandDaughters = theHeir.getHeirnb();
         }
         if(deceased.hasOnlyOneGrandDaughterFromASon() && !deceased.hasoffspring() && deceased.hasNoGrandSonFromSon())
             return deceased.getLegacy() / 2;
@@ -565,9 +565,9 @@ public final class StandardRules {
             double remainingportion = 0.0;
             for (Heir heir: theHeirs) {
                 if (heir.isWife())
-                    noOfWives++;
+                    noOfWives = heir.getHeirnb();
                 else if (heir.isGrandSon()) {
-                    noOfGrandSons++;
+                    noOfGrandSons = heir.getHeirnb();
                 }
             }
 
@@ -778,7 +778,7 @@ public final class StandardRules {
         return grandDaughterPortion;
     }
 
-    private static double getPaternalCousinGrandsonportion(Deceased deceased) {
+    public static double getPaternalCousinGrandsonportion(Deceased deceased) {
 
         double paternalcousingrandsonportion = 0.0;
         double remainingportion = 0.0;
@@ -790,10 +790,10 @@ public final class StandardRules {
 
         for (Heir heir: theheirs) {
             if (heir.isWife()) {
-                noOfWives++;
+                noOfWives = heir.getHeirnb();
             }
             else if (heir.isPaternalCousinGrandson()){
-                noOfPaternalCousinGrandson++;
+                noOfPaternalCousinGrandson = heir.getHeirnb();
             }
         }
 
@@ -839,7 +839,7 @@ public final class StandardRules {
         return paternalcousingrandsonportion;
     }
 
-    private static double getCousinGrandsonportion(Deceased deceased) {
+    public static double getCousinGrandsonportion(Deceased deceased) {
         double cousingrandsonportion = 0.0;
         double remainingportion = 0.0;
 
@@ -850,10 +850,10 @@ public final class StandardRules {
 
         for (Heir heir: theheirs) {
             if (heir.isWife()) {
-                noOfWives++;
+                noOfWives = heir.getHeirnb();
             }
             else if (heir.isCousinGrandson()){
-                noOfCousinGrandson++;
+                noOfCousinGrandson = heir.getHeirnb();
             }
         }
 
@@ -899,7 +899,7 @@ public final class StandardRules {
         return cousingrandsonportion;
     }
 
-    private static double getPaternalCousinSonportion(Deceased deceased) {
+    public static double getPaternalCousinSonportion(Deceased deceased) {
         double paternalcousinsonportion = 0.0;
         double remainingportion = 0.0;
 
@@ -910,10 +910,10 @@ public final class StandardRules {
 
         for (Heir heir: theheirs) {
             if (heir.isWife()) {
-                noOfWives++;
+                noOfWives = heir.getHeirnb();
             }
             else if (heir.isPaternalCousinGrandson()){
-                noOfPaternalCousinson++;
+                noOfPaternalCousinson = heir.getHeirnb();
             }
         }
 
@@ -959,7 +959,7 @@ public final class StandardRules {
         return paternalcousinsonportion;
     }
 
-    private static double getCousinSonportion(Deceased deceased) {
+    public static double getCousinSonportion(Deceased deceased) {
         double cousinsonportion = 0.0;
         double remainingportion = 0.0;
 
@@ -970,10 +970,10 @@ public final class StandardRules {
 
         for (Heir heir: theheirs) {
             if (heir.isWife()) {
-                noOfWives++;
+                noOfWives = heir.getHeirnb();
             }
             else if (heir.isCousinSon()){
-                noOfCousinson++;
+                noOfCousinson = heir.getHeirnb();
             }
         }
 
@@ -1019,7 +1019,7 @@ public final class StandardRules {
         return cousinsonportion;
     }
 
-    private static double getCousinportion(Deceased deceased) {
+    public static double getCousinportion(Deceased deceased) {
 
         double cousinportion = 0.0;
         double remainingportion = 0.0;
@@ -1031,10 +1031,10 @@ public final class StandardRules {
 
         for (Heir heir: theheirs) {
             if (heir.isWife()) {
-                noOfWives++;
+                noOfWives = heir.getHeirnb();
             }
             else if (heir.isCousin()){
-                noOfCousin++;
+                noOfCousin = heir.getHeirnb();
             }
         }
 
@@ -1074,7 +1074,7 @@ public final class StandardRules {
 
     }
 
-    private static double getPaternalUncleportion(Deceased deceased) {
+    public static double getPaternalUncleportion(Deceased deceased) {
         //begin
         double paternaluncleportion = 0.0;
         double remainingportion = 0.0;
@@ -1086,10 +1086,10 @@ public final class StandardRules {
 
         for (Heir heir: theheirs) {
             if (heir.isWife()) {
-                noOfWives++;
+                noOfWives = heir.getHeirnb();
             }
             else if (heir.isPaternalUncle()){
-                noOfpaternaluncles++;
+                noOfpaternaluncles = heir.getHeirnb();
             }
         }
 
@@ -1129,7 +1129,7 @@ public final class StandardRules {
         //end
     }
 
-    private static double getUncleportion(Deceased deceased) {
+    public static double getUncleportion(Deceased deceased) {
         //begin
         double uncleportion = 0.0;
         double remainingportion = 0.0;
@@ -1141,10 +1141,10 @@ public final class StandardRules {
 
         for (Heir heir: theheirs) {
             if (heir.isWife()) {
-                noOfWives++;
+                noOfWives = heir.getHeirnb();
             }
             else if (heir.isUncle()){
-                noOfUncles++;
+                noOfUncles = heir.getHeirnb();
             }
         }
 
@@ -1186,7 +1186,7 @@ public final class StandardRules {
         //end
     }
 
-    private static double getPaternalNephewSonportion(Deceased deceased) {
+    public static double getPaternalNephewSonportion(Deceased deceased) {
         //begin
         double paternalnephewsonportion = 0.0;
         double remainingportion = 0.0;
@@ -1199,9 +1199,9 @@ public final class StandardRules {
         for (Heir heir: theheirs) {
 
             if (heir.isWife())
-                noOfWives++;
+                noOfWives = heir.getHeirnb();
             else if (heir.isPaternalNephewSon())
-                noOfPaternalNephewSon++;
+                noOfPaternalNephewSon = heir.getHeirnb();
         }
 
         if (!deceased.hasPaternalNephew() && !deceased.hasNephew() && deceased.hasNoPaternalBrother() && deceased.hasNoFullBrother()
@@ -1242,7 +1242,7 @@ public final class StandardRules {
         //end
     }
 
-    private static double getNephewSonportion(Deceased deceased) {
+    public static double getNephewSonportion(Deceased deceased) {
         //begin
 
         double nephewsonportion = 0.0;
@@ -1255,9 +1255,9 @@ public final class StandardRules {
 
         for (Heir heir: theheirs) {
             if (heir.isWife())
-                noOfWives++;
+                noOfWives = heir.getHeirnb();
             else if (heir.isNephewSon())
-                noOfNephewSon++;
+                noOfNephewSon = heir.getHeirnb();
         }
 
         if (!deceased.hasNephew() && deceased.hasNoPaternalBrother() && deceased.hasNoFullBrother() && !deceased.hasGrandFather()
@@ -1297,7 +1297,7 @@ public final class StandardRules {
         //end
     }
 
-    private static double getPaternalNephewportion(Deceased deceased) {
+    public static double getPaternalNephewportion(Deceased deceased) {
         //begin
 
         double paternalnephewportion = 0.0;
@@ -1310,9 +1310,9 @@ public final class StandardRules {
 
         for (Heir heir: theheirs) {
             if (heir.isWife())
-                noOfWives++;
+                noOfWives = heir.getHeirnb();
             else if (heir.isPaternalNephew())
-                noOfPaternalNephews++;
+                noOfPaternalNephews = heir.getHeirnb();
         }
 
         if (!deceased.hasNephewSon() && !deceased.hasNephew() && deceased.hasNoPaternalBrother() && deceased.hasNoFullBrother()
@@ -1349,7 +1349,7 @@ public final class StandardRules {
         //end
     }
 
-    private static double getNephewportion(Deceased deceased) {
+    public static double getNephewportion(Deceased deceased) {
         //begin
 
         double nephewportion = 0.0;
@@ -1362,9 +1362,9 @@ public final class StandardRules {
 
         for (Heir heir: theheirs) {
             if (heir.isWife())
-                noOfWives++;
+                noOfWives = heir.getHeirnb();
             else if (heir.isNephew())
-                noOfNephews++;
+                noOfNephews = heir.getHeirnb();
         }
 
         if (deceased.hasNoPaternalBrother() && deceased.hasNoFullBrother()
@@ -1402,14 +1402,14 @@ public final class StandardRules {
         //end
     }
 
-    private static double getMaternalSiblingportion(Deceased deceased) {
+    public static double getMaternalSiblingportion(Deceased deceased) {
         int noOfMaternalSibling = 0;
         double maternalSisterPortion = 0.0;
         List<Heir> theHeirs = deceased.getHeirs();
         for(Heir theHeir : theHeirs)
         {
             if(theHeir.isMaternalBrother() || theHeir.isMaternalSister())
-                ++noOfMaternalSibling;
+                noOfMaternalSibling = theHeir.getHeirnb();
         }
         if(deceased.hasOnlyOneMaternalSibling() && deceased.hasNoSon() && deceased.hasNoMalePaternalAncestor())
             maternalSisterPortion = deceased.getLegacy() / 6;
@@ -1421,14 +1421,14 @@ public final class StandardRules {
 
     }
 
-    private static double getPaternalSisterportion(Deceased deceased) {
+    public static double getPaternalSisterportion(Deceased deceased) {
         int noOfPaternalSisters = 0;
         double paternalSisterPortion = 0.0;
         List<Heir> theHeirs = deceased.getHeirs();
         for(Heir theHeir : theHeirs)
         {
             if(theHeir.isPaternalSister())
-                ++noOfPaternalSisters;
+                noOfPaternalSisters = theHeir.getHeirnb();
         }
         if(deceased.hasOnlyOnePaternalSister() && !deceased.hasoffspring() && deceased.hasNoMalePaternalAncestor() && deceased.hasNoFullSiblingOrPaternalBrother())
             paternalSisterPortion = deceased.getLegacy() / 2;
@@ -1444,9 +1444,9 @@ public final class StandardRules {
 
             for (Heir heir: theHeirs) {
                 if (heir.isPaternalBrother())
-                    noOfPaternalBrothers++;
+                    noOfPaternalBrothers = heir.getHeirnb();
                 else if (heir.isWife()) {
-                    noOfWives++;
+                    noOfWives = heir.getHeirnb();
                 }
             }
 
@@ -1656,7 +1656,7 @@ public final class StandardRules {
         return paternalSisterPortion;
     }
 
-    private static double getPaternalBrotherportion(Deceased deceased) {
+    public static double getPaternalBrotherportion(Deceased deceased) {
         //begin
         int noOfWives = 0;
         int noOfPaternalBrothers = 0;
@@ -1670,11 +1670,11 @@ public final class StandardRules {
 
         for (Heir heir: theHeirs) {
             if (heir.isPaternalBrother())
-                noOfPaternalBrothers++;
+                noOfPaternalBrothers = heir.getHeirnb();
             else if (heir.isWife()) {
-                noOfWives++;
+                noOfWives = heir.getHeirnb();
             } else if (heir.isPaternalSister()) {
-                noOfPaternalSisters++;
+                noOfPaternalSisters = heir.getHeirnb();
             }
         }
         if (!deceased.hasNoPaternalBrother()) {
@@ -1845,7 +1845,7 @@ public final class StandardRules {
         //end
     }
 
-    private static double getFullBrotherportion(Deceased deceased) {
+    public static double getFullBrotherportion(Deceased deceased) {
         //begin
         int noOfWives = 0;
         int noOfFullBrothers = 0;
@@ -1859,11 +1859,11 @@ public final class StandardRules {
 
         for (Heir heir: theHeirs) {
             if (heir.isFullBrother())
-                noOfFullBrothers++;
+                noOfFullBrothers = heir.getHeirnb();
             else if (heir.isWife()) {
-                noOfWives++;
+                noOfWives = heir.getHeirnb();
             } else if (heir.isFullSister()) {
-                noOfFullSisters++;
+                noOfFullSisters = heir.getHeirnb();
             }
         }
 
@@ -2025,7 +2025,7 @@ public final class StandardRules {
         //end
     }
 
-    private static double getGrandsonportion(Deceased deceased) {
+    public static double getGrandsonportion(Deceased deceased) {
         //begin
         int noOfGrandDaughters = 0;
         int noOfWives = 0;
@@ -2040,11 +2040,11 @@ public final class StandardRules {
         for (Heir heir: theheirs){
 
             if (heir.isGrandDaughter()){
-                noOfGrandDaughters++;
+                noOfGrandDaughters = heir.getHeirnb();
             } else if (heir.isWife()) {
-                noOfWives++;
+                noOfWives = heir.getHeirnb();
             } else if (heir.isGrandSon()) {
-                noOfGrandSons++;
+                noOfGrandSons = heir.getHeirnb();
             }
         }
 
@@ -2315,7 +2315,7 @@ public final class StandardRules {
         for(Heir theHeir : theHeirs)
         {
             if(theHeir.isFullSister())
-                ++noOfFullSisters;
+                noOfFullSisters = theHeir.getHeirnb();
         }
         if(deceased.hasOnlyOneFullSister() && !deceased.hasoffspring() && deceased.hasNoMalePaternalAncestor() && deceased.hasNoFullBrother())
             fullSisterPortion = deceased.getLegacy() / 2;
@@ -2329,9 +2329,9 @@ public final class StandardRules {
 
             for (Heir heir: theHeirs) {
                 if (heir.isWife())
-                    noOfWives++;
+                    noOfWives = heir.getHeirnb();
                 else if (heir.isFullBrother()) {
-                    noOfFullBrothers++;
+                    noOfFullBrothers = heir.getHeirnb();
                 }
             }
 

@@ -6,6 +6,7 @@ import com.example.rules.InheritanceException;
 public class Heir implements Inheritable{
 
 	private String heirtype;
+    private int heirnb;
 	private double inheritedvalue;
 	private boolean blocked;
 	private String blockreason;
@@ -19,8 +20,9 @@ public class Heir implements Inheritable{
 		this.blockreason = blockreason;
 	}
 	
-	public Heir(String heirtype) {
+	public Heir(String heirtype, int heirnb) {
 		this.heirtype = heirtype;
+        this.heirnb = heirnb;
 	}
 	
 	
@@ -61,6 +63,13 @@ public class Heir implements Inheritable{
         this.heirtype = heirtype;
 				
 	}
+    public int getHeirnb(){
+        return this.heirnb;
+    }
+
+    public void setHeirnb(int heirnb){
+        this.heirnb = heirnb;
+    }
 	
 	public double getinheritedvalue() {
 		
@@ -69,7 +78,8 @@ public class Heir implements Inheritable{
 	}
 	
 	public void setinheritedvalue(double inheritedvalue) {
-		this.inheritedvalue = inheritedvalue;
+
+        this.inheritedvalue = inheritedvalue;
 	}
 	
 	public boolean isSpouse()

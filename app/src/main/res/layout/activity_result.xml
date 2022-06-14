@@ -1,9 +1,281 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ResultActivity">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="RESULT:"
+            android:textStyle="bold"
+            android:textSize="35dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="70dp"
+            android:layout_marginBottom="70dp"
+            android:textColor="@color/black"
+            android:id="@+id/titleresult"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/titleresult"
+            android:text="Heir1  :"
+            android:textSize="20sp"
+            android:textColor="@color/black"
+            android:layout_marginLeft="30dp"
+            android:id="@+id/heir1txt"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="portion1"
+            android:layout_below="@+id/titleresult"
+            android:layout_toRightOf="@+id/heir1txt"
+            android:textSize="20dp"
+            android:layout_marginLeft="30dp"
+            android:textColor="@color/black"
+            android:id="@+id/portion1txt"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/heir2txt"
+            android:text="Daughter  :"
+            android:layout_below="@+id/heir1txt"
+            android:textSize="20dp"
+            android:textColor="@color/black"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="30dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/portion2txt"
+            android:text="portion2"
+            android:layout_below="@id/portion1txt"
+            android:layout_toRightOf="@id/heir2txt"
+            android:textSize="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="30dp"
+            android:textColor="@color/black"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:layout_marginTop="20dp"
+            android:layout_below="@+id/heir2txt"
+            android:text="Father  :"
+            android:textSize="20dp"
+            android:layout_marginLeft="30dp"
+            android:id="@+id/heir3txt"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:layout_marginTop="20dp"
+            android:layout_below="@+id/portion2txt"
+            android:textSize="20dp"
+            android:text="portion3"
+            android:layout_toRightOf="@+id/heir3txt"
+            android:layout_marginLeft="30dp"
+            android:id="@+id/portion3txt"/>
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:layout_marginTop="20dp"
+            android:layout_below="@+id/heir3txt"
+            android:textSize="20dp"
+            android:text="Mother  :"
+            android:layout_marginLeft="30dp"
+            android:id="@+id/heir4txt"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:layout_marginTop="20dp"
+            android:layout_below="@+id/portion3txt"
+            android:text="portion4"
+            android:textSize="20dp"
+            android:layout_toRightOf="@id/heir4txt"
+            android:layout_marginLeft="30dp"
+            android:id="@+id/portion4txt"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:layout_marginTop="20dp"
+            android:layout_below="@+id/heir4txt"
+            android:textSize="20dp"
+            android:text="Full Sister  :"
+            android:layout_marginLeft="30dp"
+            android:id="@+id/heir5txt"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:layout_marginTop="20dp"
+            android:layout_below="@+id/portion4txt"
+            android:layout_toRightOf="@+id/heir5txt"
+            android:textSize="20dp"
+            android:text="portion5"
+            android:layout_marginLeft="30dp"
+            android:id="@+id/portion5txt"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:layout_marginTop="20dp"
+            android:layout_below="@+id/heir5txt"
+            android:textSize="20dp"
+            android:text="Paternal Sister  :"
+            android:layout_marginLeft="30dp"
+            android:id="@+id/heir6txt"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:layout_marginTop="20dp"
+            android:layout_below="@+id/portion5txt"
+            android:textSize="20dp"
+            android:layout_toRightOf="@+id/heir6txt"
+            android:text="portion6"
+            android:layout_marginLeft="30dp"
+            android:id="@+id/portion6txt"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="20dp"
+            android:textColor="@color/black"
+            android:layout_below="@+id/heir6txt"
+            android:text="Spouse Name  :"
+            android:id="@+id/heir7txt"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="20dp"
+            android:textColor="@color/black"
+            android:text="portion7"
+            android:layout_below="@+id/portion6txt"
+            android:layout_toRightOf="@+id/heir6txt"
+            android:id="@+id/portion7txt"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="20dp"
+            android:textColor="@color/black"
+            android:layout_below="@+id/heir7txt"
+            android:text="Grandfather  :"
+            android:id="@+id/heir8txt"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="20dp"
+            android:textColor="@color/black"
+            android:text="portion8"
+            android:layout_below="@+id/portion7txt"
+            android:layout_toRightOf="@+id/heir7txt"
+            android:id="@+id/portion8txt"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="20dp"
+            android:textColor="@color/black"
+            android:layout_below="@+id/heir8txt"
+            android:text="Maternal Grandmother : "
+            android:id="@+id/heir9txt"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="20dp"
+            android:textColor="@color/black"
+            android:text="portion9"
+            android:layout_below="@+id/portion8txt"
+            android:layout_toRightOf="@+id/heir9txt"
+            android:id="@+id/portion9txt"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="20dp"
+            android:textColor="@color/black"
+            android:layout_below="@+id/heir9txt"
+            android:text="Paternal Grandmother :"
+            android:id="@+id/heir10txt"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="20dp"
+            android:textColor="@color/black"
+            android:text="portion10"
+            android:layout_below="@+id/portion9txt"
+            android:layout_toRightOf="@+id/heir10txt"
+            android:id="@+id/portion10txt"
+            />
+
+        <com.google.android.material.button.MaterialButton
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/heir10txt"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="30dp"
+            android:textSize="25dp"
+            android:text="Export File"
+            android:padding="20dp"
+            android:layout_marginStart="100dp"
+            android:layout_marginBottom="20dp"/>
+
+
+
+
+
+    </RelativeLayout>
+
+</ScrollView>

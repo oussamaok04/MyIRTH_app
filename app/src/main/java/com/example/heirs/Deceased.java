@@ -17,8 +17,9 @@ public class Deceased extends Person{
 	
 	
 	
-	public Deceased(String gender) {
-		super(gender);
+	public Deceased(String gender , double legacy) {
+        super(gender);
+        this.legacy = legacy;
 	}
 	
 	public boolean hasoffspring() {
@@ -29,14 +30,9 @@ public class Deceased extends Person{
 	}
 	
 	
-	public void addHeir(Heir heir) throws InheritanceException {
-		
-        //Check to ensure the decease does not exceed maximum of 4 wives.
-        
-        if(heir.isWife() && CommonSense.hasMaximumWives(this))
-        	throw new InheritanceException("Cannot exceed maximum of 4 wives.");
-        else
-            this.heirs.add(heir);
+	public void addHeir(Heir heir){
+
+        this.heirs.add(heir);
     }
 	
 	

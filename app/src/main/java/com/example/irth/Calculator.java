@@ -15,9 +15,13 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.heirs.Deceased;
+import com.example.heirs.Heir;
 import com.example.heirs.Person;
+import com.example.rules.StandardRules;
 
 import java.util.ArrayList;
+import java.util.List;
 
 
 public class Calculator extends AppCompatActivity {
@@ -29,6 +33,7 @@ public class Calculator extends AppCompatActivity {
     EditText edtlegacy;
     TextView txtwives;
     String gender = Person.MALE;
+
 
 
 
@@ -99,8 +104,8 @@ public class Calculator extends AppCompatActivity {
         spwives.setAdapter(wivesAdapter);
 
         ArrayList<String> exists = new ArrayList<>();
-        exists.add("Yes");
-        exists.add("No");
+        exists.add("0");
+        exists.add("1");
 
         ArrayAdapter<String> existAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item,exists);
 
@@ -143,7 +148,7 @@ public class Calculator extends AppCompatActivity {
                         gender = Person.FEMALE;
                         break;
                     case R.id.rdbtnmale:
-                        txtwives.setText("Wives");
+                        txtwives.setText("Wife");
                         spwives.setAdapter(wivesAdapter);
                         gender = Person.MALE;
                         break;
@@ -159,18 +164,172 @@ public class Calculator extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (edtlegacy.getText().toString().equals("")){
-                    Toast.makeText(Calculator.this, "Plz Enter Legacy Value!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Calculator.this, "Please Enter Legacy Value!", Toast.LENGTH_SHORT).show();
                 }
                 else{
+                    Heir h1,daughter,father,mother,fsister,psister,spouse,gfather,mgmother,pgmother;
+
+                    h1 = new Heir(txtsons.getSelectedItem().toString(), Integer.parseInt(spsons.getSelectedItem().toString()));
+                    daughter = new Heir("Daughter", Integer.parseInt(spdaughters.getSelectedItem().toString()));
+                    father = new Heir("Father", Integer.parseInt(spfather.getSelectedItem().toString()));
+                    mother = new Heir("Mother", Integer.parseInt(spfather.getSelectedItem().toString()));
+                    fsister = new Heir("Full Sister", Integer.parseInt(spfather.getSelectedItem().toString()));
+                    psister = new Heir("Paternal Sister", Integer.parseInt(spfather.getSelectedItem().toString()));
+                    spouse = new Heir(txtwives.getText().toString(), Integer.parseInt(spfather.getSelectedItem().toString()));
+                    gfather = new Heir("Grandfather", Integer.parseInt(spfather.getSelectedItem().toString()));
+                    mgmother = new Heir("Maternal Grandmother", Integer.parseInt(spfather.getSelectedItem().toString()));
+                    pgmother = new Heir("Paternal Grandmother", Integer.parseInt(spfather.getSelectedItem().toString()));
+
+                    Deceased deceased = new Deceased(getgender(), getlegacy());
+
+                    deceased.addHeir(h1);
+                    deceased.addHeir(daughter);
+                    deceased.addHeir(father);
+                    deceased.addHeir(mother);
+                    deceased.addHeir(fsister);
+                    deceased.addHeir(psister);
+                    deceased.addHeir(spouse);
+                    deceased.addHeir(gfather);
+                    deceased.addHeir(mgmother);
+                    deceased.addHeir(pgmother);
+
+                    double h1portion = 0.0;
+                    double daughterportion = 0.0;
+                    double fsisterportion = 0.0;
+                    double psisterportion = 0.0;
+                    double fatherportion = 0.0;
+                    double motherportion = 0.0;
+                    double spouseportion = 0.0;
+                    double gfatherportion = 0.0;
+                    double mgmotherportion = 0.0;
+                    double pgmotherportion = 0.0;
+
+
+                    h1portion = firstheirportion(deceased, txtsons.getSelectedItem().toString());
+                    daughterportion = StandardRules.getDaughterportion(deceased);
+                    fatherportion = StandardRules.getFatherportion(deceased);
+                    motherportion = StandardRules.getMotherportion(deceased);
+                    fsisterportion = StandardRules.getFullSisterportion(deceased);
+                    psisterportion = StandardRules.getPaternalBrotherportion(deceased);
+                    spouseportion = getspouseportion(deceased);
+                    gfatherportion = StandardRules.getGrandFatherportion(deceased);
+                    mgmotherportion = StandardRules.getMaternalGrandMotherportion(deceased);
+                    pgmotherportion = StandardRules.getPaternalGrandMotherportion(deceased);
+
+                    h1.setinheritedvalue(h1portion);
+                    daughter.setinheritedvalue(daughterportion);
+                    father.setinheritedvalue(fatherportion);
+                    mother.setinheritedvalue(motherportion);
+                    fsister.setinheritedvalue(fsisterportion);
+                    psister.setinheritedvalue(psisterportion);
+                    spouse.setinheritedvalue(spouseportion);
+                    gfather.setinheritedvalue(gfatherportion);
+                    mgmother.setinheritedvalue(mgmotherportion);
+                    pgmother.setinheritedvalue(pgmotherportion);
+
+                    String heir1 = txtsons.getSelectedItem().toString();
+                    String spousename = txtwives.getText().toString();
+
+
+                    DBHelper db = new DBHelper(Calculator.this);
+                    List<Heir> theheirs = deceased.getHeirs();
+                    for (Heir heir : theheirs) {
+                        db.addheirs(heir);
+                    }
+                    db.adddeceased(deceased);
+
                     Intent intent = new Intent(getApplicationContext(),ResultActivity.class);
+                    intent.putExtra("heir1name", heir1);
+                    intent.putExtra("spousename", spousename);
+                    intent.putExtra("portion1", h1portion);
+                    intent.putExtra("portion1", daughterportion);
+                    intent.putExtra("portion1", fatherportion);
+                    intent.putExtra("portion1", motherportion);
+                    intent.putExtra("portion1", fsisterportion);
+                    intent.putExtra("portion1", psisterportion);
+                    intent.putExtra("portion1", spouseportion);
+                    intent.putExtra("portion1", gfatherportion);
+                    intent.putExtra("portion1", mgmotherportion);
+                    intent.putExtra("portion1", pgmotherportion);
                     startActivity(intent);
                 }
             }
+
+            public double getspouseportion(Deceased deceased){
+                double portion = 0.0;
+                if (deceased.getGender().equals(Person.FEMALE)){
+                    portion = StandardRules.getHusbandportion(deceased);
+                }
+                else {
+                    portion = StandardRules.getWifeportion(deceased, Integer.parseInt(spwives.getSelectedItem().toString()));
+                }
+                return portion;
+            }
+
+            public double firstheirportion(Deceased deceased, String heirtype){
+                double portion = 0.0;
+                switch (heirtype){
+                    case "Son":
+                        portion = StandardRules.getSonPortion(deceased);
+                        break;
+                    case "Grandson":
+                        portion = StandardRules.getGrandsonportion(deceased);
+                        break;
+                    case "Fullbrother":
+                        portion = StandardRules.getFullBrotherportion(deceased);
+                    case "Paternal Brother":
+                        portion = StandardRules.getPaternalBrotherportion(deceased);
+                        break;
+                    case "Maternal Brother":
+                        portion = StandardRules.getMaternalSiblingportion(deceased);
+                        break;
+                    case "Maternal Sister":
+                        portion = StandardRules.getMaternalSiblingportion(deceased);
+                        break;
+                    case "Nephew":
+                        portion = StandardRules.getNephewportion(deceased);
+                        break;
+                    case "Paternal Nephew":
+                        portion = StandardRules.getPaternalNephewportion(deceased);
+                        break;
+                    case "Nephew's Son":
+                        portion = StandardRules.getNephewSonportion(deceased);
+                        break;
+                    case "Paternal Nephew's Son":
+                        portion = StandardRules.getPaternalNephewSonportion(deceased);
+                        break;
+                    case "Uncle":
+                        portion = StandardRules.getUncleportion(deceased);
+                        break;
+                    case "Paternal Uncle":
+                        portion = StandardRules.getPaternalUncleportion(deceased);
+                        break;
+                    case "Cousin":
+                        portion = StandardRules.getCousinportion(deceased);
+                        break;
+                    case "Paternal Cousin":
+                        portion = StandardRules.getPaternalCousinSonportion(deceased);
+                        break;
+                    case "Cousin's Son":
+                        portion = StandardRules.getCousinSonportion(deceased);
+                        break;
+                    case "Paternal Cousin's Son":
+                        portion = StandardRules.getPaternalCousinSonportion(deceased);
+                        break;
+                    default:
+                        portion = StandardRules.getSonPortion(deceased);
+                }
+
+                return portion;
+            }
+
+
         });
 
 
 
     }
+
     public String getgender(){
         return this.gender;
     }
@@ -179,27 +338,5 @@ public class Calculator extends AppCompatActivity {
         return Double.parseDouble(edtlegacy.getText().toString());
     }
 
-    public int getsonsnb(){
-        if (txtsons.getSelectedItem().toString().equals("Son")){
-            return Integer.parseInt(spsons.getSelectedItem().toString());
-        }
-        else
-            return 0;
-    }
 
-    public int getgrandsonsnb(){
-        if (txtsons.getSelectedItem().toString().equals("Grandson")){
-            return Integer.parseInt(spsons.getSelectedItem().toString());
-        }
-        else
-            return 0;
-    }
-
-    public int getfullbrothernb(){
-        if (txtsons.getSelectedItem().toString().equals("Son")){
-            return Integer.parseInt(spsons.getSelectedItem().toString());
-        }
-        else
-            return 0;
-    }
 }

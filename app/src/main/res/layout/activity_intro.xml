@@ -4,16 +4,29 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#425f9b"
     tools:context=".IntroActivity">
 
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="The intro gonna be here !"
-        android:textSize="30dp"
-        android:id="@+id/introtxt"
+        android:id="@+id/title"
+        android:text="INTRODUCTION"
+        android:textSize="34sp"
         android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"/>
+        android:layout_marginTop="60dp"
+        android:textStyle="bold"
+        android:textColor="#b0c0e7"/>
 
+    <TextView
+        android:id="@+id/introtxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/title"
+        android:layout_centerInParent="true"
+        android:text="Islamic inheritance being a very important and critical aspect in Islamic society faces a great problem with its calculation due to the manual method used by Islamic scholars. This manual method of distribution was characterized by many problems; some of which are: computational complexity, lack of speed and accuracy, under-splitting and over-splitting, etc. \n\nTherefore, we decided to create an automated Islamic Inheritance Calculator to reduce time consumption and solve other problems encountered in the manual method."
+        android:textSize="24sp"
+        android:padding="30dp"
+        android:textColor="@color/white"/>
 </RelativeLayout>
