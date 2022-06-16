@@ -3,16 +3,17 @@ package com.example.heirs;
 import com.example.rules.CommonSense;
 import com.example.rules.InheritanceException;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
 public class Deceased extends Person{
 	
 	private double legacy;
-	private String gender;
+	private String gender = "Male";
 	public static final String MALE = "Male";
 	public static final String FEMALE = "Female";
-    private List<Heir> heirs;
+    private List<Heir> heirs = new ArrayList<>();
 	
 	
 	

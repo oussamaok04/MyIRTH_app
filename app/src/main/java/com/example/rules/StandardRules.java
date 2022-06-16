@@ -1,6 +1,8 @@
 package com.example.rules;
 
 
+import android.os.NetworkOnMainThreadException;
+
 import com.example.heirs.Deceased;
 import com.example.heirs.Heir;
 import com.example.heirs.Person;
@@ -27,18 +29,18 @@ public final class StandardRules {
     }
 
     //daughter share
-    public static double getDaughterportion(Deceased deceased){
+    public static double getDaughterportion(Deceased deceased, int noOfDaughters, int noOfSons, int noOfWives){
 
-        int noOfDaughters = 0;
+        /*int noOfDaughters = 0;
         int noOfSons = 0;
-        int noOfWives = 0;
+        int noOfWives = 0;*/
 
         double daughterportion = 0.0;
         double remainingportion = 0.0;
 
         List<Heir> theheirs = deceased.getHeirs();
 
-        for (Heir heir: theheirs) {
+       /* for (Heir heir: theheirs) {
 
             if (heir.isDaughter()) {
                 noOfDaughters = heir.getHeirnb();
@@ -48,17 +50,17 @@ public final class StandardRules {
             } else if (heir.isWife()) {
                 noOfWives = heir.getHeirnb();
             }
-        }
+        }*/
 
         //there is no son case
-        if (deceased.hasOnlyOneDaughter() && deceased.hasNoSon()){
-            return deceased.getLegacy() / 2.0;
-        } else if (deceased.hasMultipleDaughter() && deceased.hasNoSon()) {
+        if (noOfDaughters == 1 && noOfSons == 0){
+            daughterportion = deceased.getLegacy() / 2.0;
+        } else if (noOfDaughters > 1 && noOfSons == 0) {
             daughterportion = (deceased.getLegacy() * 2) / (3 * noOfDaughters);
         }
 
         //there is a son case
-        else if (!deceased.hasNoSon()){
+        else if (noOfSons > 0){
 
             List<Heir> unblockedheirs = new ArrayList<>();
 
@@ -132,10 +134,6 @@ public final class StandardRules {
                         allGrandsonPortion += thegrandsonportion;
                     }
 
-                    else if (heir.isGrandDaughter()){
-                        double thegranddaughterportion = StandardRules.getGrandDaughterportion(deceased);
-                        allGranddaughterPortion += thegranddaughterportion;
-                    }
 
                     else if (heir.isFather()){
                         double thefatherportion = StandardRules.getFatherportion(deceased);
@@ -242,11 +240,7 @@ public final class StandardRules {
                         double theCousinGrandsonportion = StandardRules.getCousinGrandsonportion(deceased);
                         allCousinGrandsonPortion += theCousinGrandsonportion;
                     }
-                    else if(heir.isPaternalCousinGrandson())
-                    {
-                        double thePaternalCousinGrandsonportion = StandardRules.getPaternalCousinGrandsonportion(deceased);
-                        allPaternalCousinGrandsonPortion += thePaternalCousinGrandsonportion;
-                    }
+
                     unblockedheirs.add(heir);
                 }
             }
@@ -266,7 +260,7 @@ public final class StandardRules {
                 //the daughter inherites as ASABAH (she inherites from what remains)
                 daughterportion = remainingportion / (noOfDaughters + (noOfSons * 2));
             }
-            else if(deceased.getGender().equals(Person.FEMALE)) {
+            else {
 
                 //we devide the legacy on the prescribed heirs first
                 remainingportion = deceased.getLegacy() - (husbandPortion + allGrandsonPortion + allGranddaughterPortion + fatherPortion
@@ -288,11 +282,11 @@ public final class StandardRules {
     }
 
     //Son share
-    public static double getSonPortion(Deceased deceased){
+    public static double getSonPortion(Deceased deceased,int noOfSons, int noOfDaughters, int noOfWives){
 
-        int noOfDaughters = 0;
+        /*int noOfDaughters = 0;
         int noOfWives = 0;
-        int noOfSons = 0;
+        int noOfSons = 0;*/
 
         double daughterportion = 0.0;
         double remainingportion = 0.0;
@@ -300,7 +294,7 @@ public final class StandardRules {
 
         List<Heir> theheirs = deceased.getHeirs();
 
-        for (Heir heir: theheirs){
+        /*for (Heir heir: theheirs){
 
             if (heir.isDaughter()){
                 noOfDaughters = heir.getHeirnb();
@@ -309,9 +303,9 @@ public final class StandardRules {
             } else if (heir.isSon()) {
                 noOfSons = heir.getHeirnb();
             }
-        }
+        }*/
 
-         if (!deceased.hasNoSon()){
+         if (noOfSons > 0){
 
             List<Heir> unblockedheirs = new ArrayList<>();
 
@@ -385,10 +379,6 @@ public final class StandardRules {
                         allGrandsonPortion += thegrandsonportion;
                     }
 
-                    else if (heir.isGrandDaughter()){
-                        double thegranddaughterportion = StandardRules.getGrandDaughterportion(deceased);
-                        allGranddaughterPortion += thegranddaughterportion;
-                    }
 
                     else if (heir.isFather()){
                         double thefatherportion = StandardRules.getFatherportion(deceased);
@@ -495,11 +485,7 @@ public final class StandardRules {
                         double theCousinGrandsonportion = StandardRules.getCousinGrandsonportion(deceased);
                         allCousinGrandsonPortion += theCousinGrandsonportion;
                     }
-                    else if(heir.isPaternalCousinGrandson())
-                    {
-                        double thePaternalCousinGrandsonportion = StandardRules.getPaternalCousinGrandsonportion(deceased);
-                        allPaternalCousinGrandsonPortion += thePaternalCousinGrandsonportion;
-                    }
+
                     unblockedheirs.add(heir);
                 }
             }
@@ -520,7 +506,7 @@ public final class StandardRules {
                 daughterportion = remainingportion / (noOfDaughters + (noOfSons * 2));
                 sonportion = 2 * daughterportion;
             }
-            else if(deceased.getGender().equals(Person.FEMALE)) {
+            else {
 
                 //we devide the legacy on the prescribed heirs first
                 remainingportion = deceased.getLegacy() - (husbandPortion + allGrandsonPortion + allGranddaughterPortion + fatherPortion
@@ -543,257 +529,37 @@ public final class StandardRules {
         return sonportion;
     }
 
-    public static double getGrandDaughterportion(Deceased deceased) {
-        int noOfGrandDaughters = 0;
+    public static double getGrandDaughterportion(Deceased deceased, int noOfGrandDaughters) {
+        //int noOfGrandDaughters = 0;
         double grandDaughterPortion = 0.0;
         List<Heir> theHeirs = deceased.getHeirs();
-        for(Heir theHeir : theHeirs)
+        /*for(Heir theHeir : theHeirs)
         {
             if(theHeir.isGrandDaughter())
                 noOfGrandDaughters = theHeir.getHeirnb();
-        }
-        if(deceased.hasOnlyOneGrandDaughterFromASon() && !deceased.hasoffspring() && deceased.hasNoGrandSonFromSon())
-            return deceased.getLegacy() / 2;
-        else if(deceased.hasManyGrandDaughterFromSon() && !deceased.hasoffspring() && deceased.hasNoGrandSonFromSon())
+        }*/
+        if(noOfGrandDaughters == 1 && !deceased.hasoffspring())
+            grandDaughterPortion = deceased.getLegacy() / 2;
+        else if(noOfGrandDaughters > 0 && !deceased.hasoffspring())
             grandDaughterPortion = (deceased.getLegacy() * 2) / (3 * noOfGrandDaughters);
-        else if(deceased.hasOnlyOneDaughter() && deceased.hasNoSon() && deceased.hasNoGrandSonFromSon())
+        else if(deceased.hasOnlyOneDaughter() && deceased.hasNoSon())
             grandDaughterPortion = (deceased.getLegacy() * 2) / (3 * noOfGrandDaughters);
-        else if (deceased.hasOnlyOneDaughter() && deceased.hasNoSon() && !deceased.hasNoGrandSonFromSon()) {
-            int noOfWives = 0;
-            int noOfGrandSons = 0;
 
-            double remainingportion = 0.0;
-            for (Heir heir: theHeirs) {
-                if (heir.isWife())
-                    noOfWives = heir.getHeirnb();
-                else if (heir.isGrandSon()) {
-                    noOfGrandSons = heir.getHeirnb();
-                }
-            }
-
-            if (!deceased.hasNoGrandSonFromSon()){
-
-                List<Heir> unblockedheirs = new ArrayList<>();
-
-                double husbandPortion = 0.0;
-                double wifePortion = 0.0;
-                double fatherPortion = 0.0;
-                double motherPortion = 0.0;
-                double grandfatherPortion = 0.0;
-                double paternalGrandmotherPortion = 0.0;
-                double maternalGrandmotherPortion = 0.0;
-                double allFullBrotherPortion = 0.0;
-                double allFullSisterPortion = 0.0;
-                double allPaternalBrotherPortion = 0.0;
-                double allPaternalSisterPortion = 0.0;
-                double allMaternalBrotherPortion = 0.0;
-                double allMaternalSisterPortion = 0.0;
-                double allNephewPortion = 0.0;
-                double allPaternalNephewPortion = 0.0;
-                double allNephewSonPortion = 0.0;
-                double allPaternalNephewSonPortion = 0.0;
-                double allUnclePortion = 0.0;
-                double allPaternalUnclePortion = 0.0;
-                double allCousinPortion = 0.0;
-                double allPaternalCousinPortion = 0.0;
-                double allCousinSonPortion = 0.0;
-                double allPaternalCousinSonPortion = 0.0;
-                double allCousinGrandsonPortion = 0.0;
-                double allPaternalCousinGrandsonPortion = 0.0;
-
-                for (Heir heir: theHeirs) {
-
-                    if (heir.isBlockable()){
-
-                        BlockingRules.blockingRuleA(deceased);
-                        BlockingRules.blockingRuleB(deceased);
-                        BlockingRules.blockingRuleC(deceased);
-                        BlockingRules.blockingRuleD(deceased);
-                        BlockingRules.blockingRuleE(deceased);
-                        BlockingRules.blockingRuleF(deceased);
-                        BlockingRules.blockingRuleG(deceased);
-                        BlockingRules.blockingRuleH(deceased);
-                        BlockingRules.blockingRuleI(deceased);
-                        BlockingRules.blockingRuleK(deceased);
-                        BlockingRules.blockingRuleL(deceased);
-                        BlockingRules.blockingRuleM(deceased);
-                        BlockingRules.blockingRuleN(deceased);
-                        BlockingRules.blockingRuleO(deceased);
-                        BlockingRules.blockingRuleP(deceased);
-                        BlockingRules.blockingRuleQ(deceased);
-                        BlockingRules.blockingRuleR(deceased);
-                        BlockingRules.blockingRuleS(deceased);
-                        BlockingRules.blockingRuleT(deceased);
-                    }
-
-                    if (heir.isBlocked() == false){
-
-                        if (heir.isHusband()){
-                            double thehusbandportion = StandardRules.getHusbandportion(deceased);
-                            husbandPortion += thehusbandportion;
-                        }
-
-                        else if (heir.isWife()){
-                            double thewifeportion = StandardRules.getWifeportion(deceased , noOfWives);
-                            husbandPortion += thewifeportion;
-                        }
-                        else if (heir.isFather()){
-                            double thefatherportion = StandardRules.getFatherportion(deceased);
-                            fatherPortion += thefatherportion;
-                        }
-
-                        else if (heir.isMother()){
-                            double themotherportion = StandardRules.getMotherportion(deceased);
-                            motherPortion += themotherportion;
-                        }
-
-                        else if (heir.isGrandFather()){
-                            double thegrandfatherportion = StandardRules.getGrandFatherportion(deceased);
-                            grandfatherPortion += thegrandfatherportion;
-                        }
-
-                        else if (heir.isPaternalGrandMother()){
-                            double thepaternalgrandmotherportion = StandardRules.getPaternalGrandMotherportion(deceased);
-                            paternalGrandmotherPortion += thepaternalgrandmotherportion;
-                        }
-
-                        else if(heir.isMaternalGrandMother())
-                        {
-                            double theMaternalGrandmotherPortion = StandardRules.getMaternalGrandMotherportion(deceased);
-                            maternalGrandmotherPortion += theMaternalGrandmotherPortion;
-                        }
-                        else if(heir.isFullBrother())
-                        {
-                            double theFullBrotherportion = StandardRules.getFullBrotherportion(deceased);
-                            allFullBrotherPortion += theFullBrotherportion;
-                        }
-                        else if(heir.isFullSister())
-                        {
-                            double theFullSisterPortion = StandardRules.getFullSisterportion(deceased);
-                            allFullSisterPortion += theFullSisterPortion;
-                        }
-
-                        else if(heir.isMaternalBrother())
-                        {
-                            double theMaternalBrotherPortion = StandardRules.getMaternalSiblingportion(deceased);
-                            allMaternalBrotherPortion += theMaternalBrotherPortion;
-                        }
-                        else if(heir.isMaternalSister())
-                        {
-                            double theMaternalSisterPortion = StandardRules.getMaternalSiblingportion(deceased);
-                            allMaternalSisterPortion += theMaternalSisterPortion;
-                        }
-                        else if(heir.isNephew())
-                        {
-                            double thenephewportion = StandardRules.getNephewportion(deceased);
-                            allNephewPortion += thenephewportion;
-                        }
-                        else if(heir.isPaternalNephew())
-                        {
-                            double thePaternalNephewportion = StandardRules.getPaternalNephewportion(deceased);
-                            allPaternalNephewPortion += thePaternalNephewportion;
-                        }
-                        else if(heir.isNephewSon())
-                        {
-                            double theNephewSonportion = StandardRules.getNephewSonportion(deceased);
-                            allNephewSonPortion += theNephewSonportion;
-                        }
-                        else if(heir.isPaternalNephewSon())
-                        {
-                            double thePaternaNephewSonportion = StandardRules.getPaternalNephewSonportion(deceased);
-                            allPaternalNephewSonPortion += thePaternaNephewSonportion;
-                        }
-                        else if(heir.isUncle())
-                        {
-                            double theUncleportion = StandardRules.getUncleportion(deceased);
-                            allUnclePortion += theUncleportion;
-                        }
-                        else if(heir.isPaternalUncle())
-                        {
-                            double thePaternalUncleportion = StandardRules.getPaternalUncleportion(deceased);
-                            allPaternalUnclePortion += thePaternalUncleportion;
-                        }
-                        else if(heir.isCousin())
-                        {
-                            double theCousinportion = StandardRules.getCousinportion(deceased);
-                            allCousinPortion += theCousinportion;
-                        }
-                        else if(heir.isCousinSon())
-                        {
-                            double theCousinSonportion = StandardRules.getCousinSonportion(deceased);
-                            allCousinSonPortion += theCousinSonportion;
-                        }
-                        else if(heir.isPaternalCousinSon())
-                        {
-                            double thePaternalCousinSonportion = StandardRules.getPaternalCousinSonportion(deceased);
-                            allPaternalCousinSonPortion += thePaternalCousinSonportion;
-                        }
-                        else if(heir.isCousinGrandson())
-                        {
-                            double theCousinGrandsonportion = StandardRules.getCousinGrandsonportion(deceased);
-                            allCousinGrandsonPortion += theCousinGrandsonportion;
-                        }
-                        else if(heir.isPaternalCousinGrandson())
-                        {
-                            double thePaternalCousinGrandsonportion = StandardRules.getPaternalCousinGrandsonportion(deceased);
-                            allPaternalCousinGrandsonPortion += thePaternalCousinGrandsonportion;
-                        }
-                        unblockedheirs.add(heir);
-                    }
-                }
-
-                if(deceased.getGender().equals(Person.MALE)) {
-
-                    //we devide the legacy on the prescribed heirs first
-                    remainingportion = deceased.getLegacy() - (wifePortion + fatherPortion
-                            + motherPortion + grandfatherPortion + paternalGrandmotherPortion + maternalGrandmotherPortion
-                            + allFullBrotherPortion + allFullSisterPortion + allPaternalBrotherPortion
-                            + allPaternalSisterPortion + allMaternalBrotherPortion + allMaternalSisterPortion
-                            + allNephewPortion + allPaternalNephewPortion + allNephewSonPortion + allPaternalNephewSonPortion
-                            + allUnclePortion + allPaternalUnclePortion + allCousinPortion + allPaternalCousinPortion
-                            + allCousinSonPortion + allPaternalCousinSonPortion + allCousinGrandsonPortion
-                            + allPaternalCousinGrandsonPortion);
-
-                    grandDaughterPortion = remainingportion / (noOfGrandDaughters + (noOfGrandSons * 2));
-
-                }
-                else if(deceased.getGender().equals(Person.FEMALE)) {
-
-                    //we devide the legacy on the prescribed heirs first
-                    remainingportion = deceased.getLegacy() - (husbandPortion + fatherPortion
-                            + motherPortion + grandfatherPortion + paternalGrandmotherPortion + maternalGrandmotherPortion
-                            + allFullBrotherPortion + allFullSisterPortion + allPaternalBrotherPortion
-                            + allPaternalSisterPortion + allMaternalBrotherPortion + allMaternalSisterPortion
-                            + allNephewPortion + allPaternalNephewPortion + allNephewSonPortion + allPaternalNephewSonPortion
-                            + allUnclePortion + allPaternalUnclePortion + allCousinPortion + allPaternalCousinPortion
-                            + allCousinSonPortion + allPaternalCousinSonPortion + allCousinGrandsonPortion
-                            + allPaternalCousinGrandsonPortion);
-
-                    grandDaughterPortion = remainingportion / (noOfGrandDaughters + (noOfGrandSons * 2));
-
-                }
-
-            }
-        }
         return grandDaughterPortion;
     }
 
-    public static double getPaternalCousinGrandsonportion(Deceased deceased) {
+    public static double getPaternalCousinGrandsonportion(Deceased deceased ,int noOfPaternalCousinGrandson) {
 
         double paternalcousingrandsonportion = 0.0;
         double remainingportion = 0.0;
 
         int noOfWives = 0;
-        int noOfPaternalCousinGrandson = 0;
 
         List<Heir> theheirs = deceased.getHeirs();
 
         for (Heir heir: theheirs) {
             if (heir.isWife()) {
                 noOfWives = heir.getHeirnb();
-            }
-            else if (heir.isPaternalCousinGrandson()){
-                noOfPaternalCousinGrandson = heir.getHeirnb();
             }
         }
 
@@ -1519,11 +1285,6 @@ public final class StandardRules {
                         allGrandsonPortion += thegrandsonportion;
                     }
 
-                    else if (heir.isGrandDaughter()){
-                        double thegranddaughterportion = StandardRules.getGrandDaughterportion(deceased);
-                        allGranddaughterPortion += thegranddaughterportion;
-                    }
-
                     else if (heir.isFather()){
                         double thefatherportion = StandardRules.getFatherportion(deceased);
                         fatherPortion += thefatherportion;
@@ -1619,11 +1380,7 @@ public final class StandardRules {
                         double theCousinGrandsonportion = StandardRules.getCousinGrandsonportion(deceased);
                         allCousinGrandsonPortion += theCousinGrandsonportion;
                     }
-                    else if(heir.isPaternalCousinGrandson())
-                    {
-                        double thePaternalCousinGrandsonportion = StandardRules.getPaternalCousinGrandsonportion(deceased);
-                        allPaternalCousinGrandsonPortion += thePaternalCousinGrandsonportion;
-                    }
+
                     unblockedheirs.add(heir);
                 }
 
@@ -1742,9 +1499,6 @@ public final class StandardRules {
                     } else if (heir.isGrandSon()) {
                         double thegrandsonportion = StandardRules.getGrandsonportion(deceased);
                         allGrandsonPortion += thegrandsonportion;
-                    } else if (heir.isGrandDaughter()) {
-                        double thegranddaughterportion = StandardRules.getGrandDaughterportion(deceased);
-                        allGranddaughterPortion += thegranddaughterportion;
                     } else if (heir.isFather()) {
                         double thefatherportion = StandardRules.getFatherportion(deceased);
                         fatherPortion += thefatherportion;
@@ -1802,9 +1556,6 @@ public final class StandardRules {
                     } else if (heir.isCousinGrandson()) {
                         double theCousinGrandsonportion = StandardRules.getCousinGrandsonportion(deceased);
                         allCousinGrandsonPortion += theCousinGrandsonportion;
-                    } else if (heir.isPaternalCousinGrandson()) {
-                        double thePaternalCousinGrandsonportion = StandardRules.getPaternalCousinGrandsonportion(deceased);
-                        allPaternalCousinGrandsonPortion += thePaternalCousinGrandsonportion;
                     }
                     unblockedheirs.add(heir);
                 }
@@ -1929,9 +1680,6 @@ public final class StandardRules {
                     } else if (heir.isGrandSon()) {
                         double thegrandsonportion = StandardRules.getGrandsonportion(deceased);
                         allGrandsonPortion += thegrandsonportion;
-                    } else if (heir.isGrandDaughter()) {
-                        double thegranddaughterportion = StandardRules.getGrandDaughterportion(deceased);
-                        allGranddaughterPortion += thegranddaughterportion;
                     } else if (heir.isFather()) {
                         double thefatherportion = StandardRules.getFatherportion(deceased);
                         fatherPortion += thefatherportion;
@@ -1983,9 +1731,6 @@ public final class StandardRules {
                     } else if (heir.isCousinGrandson()) {
                         double theCousinGrandsonportion = StandardRules.getCousinGrandsonportion(deceased);
                         allCousinGrandsonPortion += theCousinGrandsonportion;
-                    } else if (heir.isPaternalCousinGrandson()) {
-                        double thePaternalCousinGrandsonportion = StandardRules.getPaternalCousinGrandsonportion(deceased);
-                        allPaternalCousinGrandsonPortion += thePaternalCousinGrandsonportion;
                     }
                     unblockedheirs.add(heir);
                 }
@@ -2210,11 +1955,7 @@ public final class StandardRules {
                         double theCousinGrandsonportion = StandardRules.getCousinGrandsonportion(deceased);
                         allCousinGrandsonPortion += theCousinGrandsonportion;
                     }
-                    else if(heir.isPaternalCousinGrandson())
-                    {
-                        double thePaternalCousinGrandsonportion = StandardRules.getPaternalCousinGrandsonportion(deceased);
-                        allPaternalCousinGrandsonPortion += thePaternalCousinGrandsonportion;
-                    }
+
                     unblockedheirs.add(heir);
                 }
             }
@@ -2402,10 +2143,6 @@ public final class StandardRules {
                         allGrandsonPortion += thegrandsonportion;
                     }
 
-                    else if (heir.isGrandDaughter()){
-                        double thegranddaughterportion = StandardRules.getGrandDaughterportion(deceased);
-                        allGranddaughterPortion += thegranddaughterportion;
-                    }
 
                     else if (heir.isFather()){
                         double thefatherportion = StandardRules.getFatherportion(deceased);
@@ -2492,11 +2229,7 @@ public final class StandardRules {
                         double theCousinGrandsonportion = StandardRules.getCousinGrandsonportion(deceased);
                         allCousinGrandsonPortion += theCousinGrandsonportion;
                     }
-                    else if(heir.isPaternalCousinGrandson())
-                    {
-                        double thePaternalCousinGrandsonportion = StandardRules.getPaternalCousinGrandsonportion(deceased);
-                        allPaternalCousinGrandsonPortion += thePaternalCousinGrandsonportion;
-                    }
+
                     unblockedheirs.add(heir);
                 }
             }
