@@ -1,19 +1,84 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".RulesActivity">
+    tools:context=".RulesActivity"
+    android:background="@drawable/background_final">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Rules of Inheritance"
+            android:textSize="30dp"
+            android:id="@+id/rulestitletxt"
+            android:layout_centerHorizontal="true"
+            android:textColor="#EEBC1D"
+            android:textStyle="bold"
+            android:layout_marginTop="60dp"/>
 
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="The rules are gonna be here !"
-        android:textSize="30dp"
-        android:id="@+id/rulestxt"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"/>
+        <TextView
+            android:id="@+id/rulestxt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/rulestitletxt"
+            android:layout_centerInParent="true"
+            android:padding="40dp"
+            android:text="When a Muslim pass away, the amount/property/estate is inheritable after:\n1. Paying for the expenses of the funeral
+\n2. Returning of debts
+\n3. Giving away the will (which cannot be more than 1/3 of the amount/property/estate)
+\n Note: Will can't be written after the legal heirs which are already receiving shares in inheritance. After the paying above, the remaining property will be eligible for inheritance as per below-mentioned shares:
+\n A. Husband:
+\n      1. The husband gets 1/2 if no child/children is/are present
+\n      2. The husband gets 1/4 if child/children is/are present
+\n B. Widow:
+\n      1. The widow gets 1/4 if no child/children is/are present
+\n      2. The widow gets 1/8 if child/children is/are present
+\n      3. If more than one wife/widow, all the widows share equally out of the 1/4 or 1/8 share.
+\n C. Father (of the deceased):
+\n      1. Father without child/children is treated as Residuary i.e. after giving shares to the Quranic heirs will get the residue.
+\n      2. If the child/children of the deceased exist then the father will get 1/6.
+\n D. Mother (of the deceased):
+\n      1. The share of mother is 1/3 in the ABSENCE of child/children or two brothers or two sisters or 1 brother and 1 sister.
+\n      2. The share of mother is 1/6 in the PRESENCE of child/children or two brothers or two sisters or 1 brother and 1 sister.
+\n      3. If the mother is with father and the widow/wife (or husband) is also present, the mother will get 1/3 of what remains after deducting the share of spouse (wife/wives or husband).
+\n E. Daughter:
+\n      1. The share of single i.e. one daughter is 1/2.
+\n      2. If the daughters are more than one i.e. two or more, the share is 2/3 to be divided
+\n      3. If the son is also present with the daughter. The daughter will inherit as Residuary. Two parts will go to the son and one part to the daughter.
+\n F. Full Sister (Sister from Same Mother and Same Father)
+\n      1. A full sister will not get the share in inheritance in the presence of:
+\n          a. Child/Children, or
+\n          b. Child/Children of son, or
+\n          c. Father, or
+\n          d. Father's father.
+\n      2. If the sister is one, she will get 1/2.
+\n      3. If the sister is more than one i.e. two or more full sisters, they will get 2/3.
+\n      4. If the bother exists along with sister, she inherits as Residuary (with two shares going to the brother(s) and one share to the sister).
+\n G. Residuaries:
+\nWhen the deceased has no Sharers present, the property will be inherited by the Residuaries. Secondly, after distribution of the property, a residue remains and the residuary exists, the residue will go to the Residuaries. It some cases the Sharers will become the Residuaries e.g, a daughter with son, sister together with brother. The father without children (of the propositus) will become the Residuary.
+\nThe list of Residuaries is as below:
+\n      1. Son:
+\n          a. when the daughter does exist the son takes the entire residue.
+\n          b. when son and daughter both exist, the son gets double the share of a daughter.
+\n      2. Father:
+\n          The whole residue will go to the father.
+\n      3. Full Brother:
+\n          a. If the sister does not exist, the full brother inherits the entire residue.
+\n          b. If the sister exists along with the brother, the full brother inherits with her
+but his share is double the share of a sister.
+\n      4. Full Sister:
+            In the absence of above-mentioned residuaries, the full sister is treated as Residuary."
+            android:textColor="@color/white"
+            android:textSize="23sp" />
 
-</RelativeLayout>
+    </RelativeLayout>
+
+
+</ScrollView>

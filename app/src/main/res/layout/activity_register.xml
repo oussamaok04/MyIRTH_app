@@ -4,14 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background"
+    android:background="@drawable/registerbg"
     tools:context=".RegisterActivity">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Sign up"
-        android:textColor="@color/white"
+        android:textColor="#EEBC1D"
         android:textSize="40dp"
         android:textStyle="bold"
         android:layout_centerHorizontal="true"
@@ -25,12 +25,12 @@
         android:hint="Username"
         android:textColorHint="@color/white"
         android:textColor="@color/white"
-        android:background="#30ffffff"
+        android:background="#60ffffff"
         android:padding="20dp"
         android:layout_marginTop="150dp"
         android:layout_marginBottom="30dp"
-        android:layout_marginStart="65dp"
-        android:layout_marginEnd="65dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginEnd="50dp"
         />
 
     <EditText
@@ -40,11 +40,11 @@
         android:hint="Password"
         android:textColorHint="@color/white"
         android:textColor="@color/white"
-        android:background="#30ffffff"
+        android:background="#60ffffff"
         android:padding="20dp"
         android:layout_below="@+id/edtxtregusername"
-        android:layout_marginStart="65dp"
-        android:layout_marginEnd="65dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginEnd="50dp"
         android:layout_marginBottom="30dp"
 
         />
@@ -54,27 +54,28 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/edtxtregpass"
-        android:layout_marginStart="65dp"
-        android:layout_marginEnd="65dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginEnd="50dp"
         android:layout_marginBottom="30dp"
         android:hint="Confirm Password"
         android:padding="20dp"
         android:textColor="@color/white"
         android:textColorHint="@color/white"
-        android:background="#30ffffff"
+        android:background="#60ffffff"
         />
 
     <com.google.android.material.button.MaterialButton
+        android:id="@+id/signupbtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/signupbtn"
         android:layout_below="@id/edtxtregrepass"
-        android:text="SIGN UP"
-        android:textStyle="bold"
-        android:textColor="@color/black"
-        android:backgroundTint="#EEBC1D"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="30dp"/>
+        android:layout_marginBottom="30dp"
+        android:backgroundTint="#EEBC1D"
+        android:padding="10dp"
+        android:text="SIGN UP"
+        android:textColor="@color/black"
+        android:textStyle="bold" />
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -88,7 +89,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Do you have an account already ?"
-            android:textSize="15dp"
+            android:textSize="18sp"
             android:textStyle="italic"
             android:textColor="@color/white"
             android:id="@+id/txthasaccount"
@@ -106,6 +107,7 @@
             android:text="GO TO LOGIN PAGE"
             android:textStyle="bold"
             android:textColor="@color/black"
+            android:padding="10dp"
             />
 
     </RelativeLayout>

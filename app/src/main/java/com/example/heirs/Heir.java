@@ -8,7 +8,7 @@ public class Heir implements Inheritable{
 	private String heirtype;
     private int heirnb;
 	private double inheritedvalue;
-	private boolean blocked;
+	private boolean blocked = false;
 	private String blockreason;
 	
 	

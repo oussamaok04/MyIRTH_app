@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/b7"
+    android:background="@drawable/background_final"
     tools:context=".HomeActivity">
 
     <TextView
@@ -12,26 +12,25 @@
         android:layout_height="wrap_content"
         android:text="MyIRTH"
         android:textStyle="bold"
-        android:textColor="#b0c0e7"
-        android:textSize="60dp"
+        android:textColor="#EEBC1D"
+        android:textSize="50sp"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="150dp"
         android:layout_marginBottom="100dp"
         android:id="@+id/logotxt"/>
 
 
-
     <com.google.android.material.button.MaterialButton
+        android:id="@+id/introbtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/introbtn"
         android:layout_below="@+id/logotxt"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="40dp"
+        android:background="@android:color/transparent"
         android:text="Introduction"
         android:textColor="@color/white"
-        android:textSize="17dp"
-        android:background="@android:color/transparent"/>
+        android:textSize="17dp" />
 
 
 
