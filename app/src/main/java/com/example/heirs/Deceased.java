@@ -49,30 +49,21 @@ public class Deceased extends Person{
 	
 	
 	public boolean hasOnlyOneDaughter() {
-		int noOfDaughters = 0;
+
 		for(Heir heir : this.heirs) {
-			if(heir.isDaughter())
-				noOfDaughters++;
-			if(noOfDaughters > 1)
-				return false;
+			if(heir.isDaughter() && heir.getHeirnb() == 1)
+                return true;
 		}
-		if(noOfDaughters == 1)
-			return true;
-		else 
-			return false;
+		return false;
 	}
 	
 	
 	public boolean hasMultipleDaughter()
     {
-        int noOfOfDaughter = 0;
         for(Heir heir : this.heirs)
-            if(heir.isDaughter())
-                noOfOfDaughter++;
-        if(noOfOfDaughter > 1)
-            return true;
-        else
-            return false;
+            if(heir.isDaughter() && heir.getHeirnb() > 1)
+                return true;
+        return false;
     }
 	
 	
@@ -122,10 +113,9 @@ public class Deceased extends Person{
     public boolean hasNoGrandSonFromSon()
     {
         for(Heir heir : this.heirs)
-            if(heir.isGrandSon())
+            if(heir.isGrandSon() && heir.getHeirnb()!=0)
                 return false;
         return true;
-        //are we sure all grandson are from sons
     }
 
     public boolean hasGrandSonFromSon()
@@ -139,25 +129,14 @@ public class Deceased extends Person{
         int noOfSiblings = 0;
         for(Heir heir : this.heirs)
             if(heir.isFullBrother() || heir.isFullSister() || heir.isMaternalBrother() || heir.isMaternalSister()
-                    || heir.isPaternalBrother() || heir.isPaternalSister())
-                noOfSiblings++;
-        if(noOfSiblings > 1)
-            return false;
-        else
-            return true;
+                    || heir.isPaternalBrother() || heir.isPaternalSister() && heir.getHeirnb()!=0)
+                return false;
+        return true;
     }
 
     public boolean hasMultipleSiblings()
     {
-        int noOfSiblings = 0;
-        for(Heir heir : this.heirs)
-            if(heir.isFullBrother() || heir.isFullSister() || heir.isMaternalBrother() || heir.isMaternalSister()
-                    || heir.isPaternalBrother() || heir.isPaternalSister())
-                noOfSiblings++;
-        if(noOfSiblings > 1)
-            return true;
-        else
-            return false;
+        return !this.hasNotMultipleSiblings();
     }
     
     
@@ -201,17 +180,12 @@ public class Deceased extends Person{
 
     public boolean hasOnlyOneFullSister()
     {
-        int noOfFullSister = 0;
         for(Heir heir : this.heirs)
-            if(heir.isFullSister())
-                noOfFullSister++;
-        if(noOfFullSister > 1)
-            return false;
-        if(noOfFullSister == 1)
-            return true;
-        else
-            return false;
+            if(heir.isFullSister() && heir.getHeirnb() == 1)
+                return true;
+        return false;
     }
+
     
     
     public boolean hasNoMalePaternalAncestor()
@@ -232,59 +206,36 @@ public class Deceased extends Person{
 
     public boolean hasManyFullSisters()
     {
-        int noOfFullSister = 0;
         for(Heir heir : this.heirs)
-            if(heir.isFullSister())
-                noOfFullSister++;
-        if(noOfFullSister > 1)
-            return true;
-        else
-            return false;
+            if(heir.isFullSister() && heir.getHeirnb() > 1)
+                return true;
+        return false;
     }
 
     public boolean hasOnlyOnePaternalSister()
     {
-        int noOfPaternalSister = 0;
         for(Heir heir : this.heirs)
-            if(heir.isPaternalSister())
+            if(heir.isPaternalSister() && heir.getHeirnb() == 1)
             {
-                noOfPaternalSister++;
-                if(noOfPaternalSister > 1)
-                    return false;
+                    return true;
             }
-        if(noOfPaternalSister == 1)
-            return true;
-        else
-            return false;
+        return false;
     }
 
     public boolean hasOnlyOneMaternalSibling()
     {
         int noOfMaternalSibling = 0;
         for(Heir heir : this.heirs)
-            if(heir.isMaternalBrother() || heir.isMaternalSister())
+            if(heir.isMaternalBrother() || heir.isMaternalSister() && heir.getHeirnb() == 1)
             {
-                noOfMaternalSibling++;
-                if(noOfMaternalSibling > 1)
-                    return false;
+                    return true;
             }
-        if(noOfMaternalSibling == 1)
-            return true;
-        else
-            return false;
+        return false;
     }
 
     public boolean hasManyMaternalSibling()
     {
-        int noOfMaternalSibling = 0;
-        for(Heir heir : this.heirs)
-            if(heir.isMaternalBrother() || heir.isMaternalSister())
-            {
-                noOfMaternalSibling++;
-                if(noOfMaternalSibling > 1)
-                    return true;
-            }
-        return false;
+        return !this.hasOnlyOneMaternalSibling();
     }
 
     public boolean hasNoFullSiblingOrPaternalBrother()
@@ -305,14 +256,10 @@ public class Deceased extends Person{
 
     public boolean hasMultiplePaternalSisters()
     {
-        int noOfPaternalSisters = 0;
         for(Heir heir : this.heirs)
-            if(heir.isPaternalSister())
-                noOfPaternalSisters++;
-        if(noOfPaternalSisters > 1)
-            return true;
-        else
-            return false;
+            if(heir.isPaternalSister() && heir.getHeirnb() > 1)
+                return true;
+        return false;
     }
 
     public boolean hasGrandFather()

@@ -25,7 +25,7 @@ public class ResultActivity extends AppCompatActivity {
 
         result = (TextView) findViewById(R.id.titleresult);
 
-        legacy = (TextView) findViewById(R.id.txtl);
+        legacy = (TextView) findViewById(R.id.lamounth);
 
         heir1 = (TextView) findViewById(R.id.heir1txt);
         heir2 = (TextView) findViewById(R.id.heir2txt);

@@ -81,155 +81,209 @@ public class Heir implements Inheritable{
 
         this.inheritedvalue = inheritedvalue;
 	}
-	
-	public boolean isSpouse()
-    {
-        return this.heirtype.equals(HUSBAND) || this.heirtype.equals(WIFE);
-    }
 
     public boolean isHusband()
     {
-        return this.heirtype.equals(HUSBAND);
+        if (this.heirtype.equals(HUSBAND) && this.heirnb > 0)
+            return true;
+        else return false;
     }
 
     public boolean isWife()
     {
-        return this.heirtype.equals(WIFE);
+
+        if (this.heirtype.equals(WIFE) && this.heirnb > 0)
+            return true;
+        else return false;
     }
 
     public boolean isSon()
     {
-        return this.heirtype.equals(SON);
+        if (this.heirtype.equals(SON) && this.heirnb > 0)
+            return true;
+        else return false;
     }
 
     public boolean isDaughter()
     {
-        return this.heirtype.equals(DAUGTHER);
+        if (this.heirtype.equals(DAUGTHER)&&this.heirnb > 0)
+            return true;
+        else return false;
     }
 
     public boolean isGrandSon()
     {
-        return this.heirtype.equals(GRANDSON);
+        if (this.heirtype.equals(GRANDSON)&&this.heirnb > 0)
+            return true;
+        else return false;
     }
 
     public boolean isGrandDaughter()
     {
-        return this.heirtype.equals(GRANDDAUGHTER);
+        if (this.heirtype.equals(GRANDDAUGHTER)&&this.heirnb > 0)
+            return true;
+        else return false;
     }
 
     public boolean isFather()
     {
-        return this.heirtype.equals(FATHER);
+        if (this.heirtype.equals(FATHER)&&this.heirnb > 0)
+            return true;
+        else return false;
     }
 
     public boolean isMother()
     {
-        return this.heirtype.equals(MOTHER);
+        if (this.heirtype.equals(MOTHER)&&this.heirnb > 0)
+            return true;
+        else return false;
     }
 
     public boolean isGrandFather()
     {
-        return this.heirtype.equals(GRANDFATHER);
+        if (this.heirtype.equals(GRANDFATHER)&&this.heirnb > 0)
+            return true;
+        else return false;
     }
 
     public boolean isPaternalGrandMother()
     {
-        return this.heirtype.equals(PATERNAL_GRANDMOTHER);
+        if (this.heirtype.equals(PATERNAL_GRANDMOTHER)&&this.heirnb > 0)
+            return true;
+        else return false;
     }
 
     public boolean isMaternalGrandMother()
     {
-        return this.heirtype.equals(MATERNAL_GRANDMOTHER);
+        if (this.heirtype.equals(MATERNAL_GRANDMOTHER)&&this.heirnb > 0)
+            return true;
+        else return false;
     }
 
     public boolean isFullBrother()
     {
-        return this.heirtype.equals(FULL_BROTHER);
+        if (this.heirtype.equals(FULL_BROTHER)&&this.heirnb > 0)
+            return true;
+        else return false;
     }
 
     public boolean isFullSister()
     {
-        return this.heirtype.equals(FULL_SISTER);
+        if (this.heirtype.equals(FULL_SISTER)&&this.heirnb > 0)
+            return true;
+        else return false;
     }
 
     public boolean isPaternalBrother()
     {
-        return this.heirtype.equals(PATERNAL_BROTHER);
+        if (this.heirtype.equals(PATERNAL_BROTHER)&&this.heirnb > 0)
+            return true;
+        else return false;
     }
 
     public boolean isPaternalSister()
     {
-        return this.heirtype.equals(PATERNAL_SISTER);
+        if (this.heirtype.equals(PATERNAL_SISTER)&&this.heirnb > 0)
+            return true;
+        else return false;
     }
 
     public boolean isMaternalBrother()
     {
-        return this.heirtype.equals(MATERNAL_BROTHER);
+        if (this.heirtype.equals(MATERNAL_BROTHER)&&this.heirnb > 0)
+            return true;
+        else return false;
     }
 
     public boolean isMaternalSister()
     {
-        return this.heirtype.equals(MATERNAL_SISTER);
+        if (this.heirtype.equals(MATERNAL_SISTER)&&this.heirnb > 0)
+            return true;
+        else return false;
     }
 
     public boolean isNephew()
     {
-        return this.heirtype.equals(NEPHEW);
+        if (this.heirtype.equals(NEPHEW)&&this.heirnb > 0)
+            return true;
+        else return false;
     }
 
     public boolean isPaternalNephew()
     {
-        return this.heirtype.equals(PATERNAL_NEPHEW);
+        if (this.heirtype.equals(PATERNAL_NEPHEW)&&this.heirnb > 0)
+            return true;
+        else return false;
     }
 
     public boolean isNephewSon()
     {
-        return this.heirtype.equals(NEPHEWS_SON);
+        if (this.heirtype.equals(NEPHEWS_SON)&&this.heirnb > 0)
+            return true;
+        else return false;
     }
 
     public boolean isPaternalNephewSon()
     {
-        return this.heirtype.equals(PATERNAL_NEPHEWS_SON);
+        if (this.heirtype.equals(PATERNAL_NEPHEWS_SON)&&this.heirnb > 0)
+            return true;
+        else return false;
     }
 
     public boolean isUncle()
     {
-        return this.heirtype.equals(UNCLE);
+        if (this.heirtype.equals(UNCLE)&&this.heirnb > 0)
+            return true;
+        else return false;
     }
 
     public boolean isPaternalUncle()
     {
-        return this.heirtype.equals(PATERNAL_UNCLE);
+        if (this.heirtype.equals(PATERNAL_UNCLE)&&this.heirnb > 0)
+            return true;
+        else return false;
     }
 
     public boolean isCousin()
     {
-        return this.heirtype.equals(COUSIN);
+        if (this.heirtype.equals(COUSIN)&&this.heirnb > 0)
+            return true;
+        else return false;
     }
 
     public boolean isPaternalCousin()
     {
-        return this.heirtype.equals(PATERNAL_COUSIN);
+        if (this.heirtype.equals(PATERNAL_COUSIN)&&this.heirnb > 0)
+            return true;
+        else return false;
     }
 
     public boolean isPaternalCousinSon()
     {
-        return this.heirtype.equals(PATERNAL_COUSINS_SON);
+        if (this.heirtype.equals(PATERNAL_COUSINS_SON)&&this.heirnb > 0)
+            return true;
+        else return false;
     }
 
     public boolean isCousinGrandson()
     {
-        return this.heirtype.equals(COUSINS_GRANDSON);
+        if (this.heirtype.equals(COUSINS_GRANDSON)&&this.heirnb > 0)
+            return true;
+        else return false;
     }
 
     public boolean isPaternalCousinGrandson()
     {
-        return this.heirtype.equals(PATERNAL_COUSINS_GRANDSON);
+        if (this.heirtype.equals(PATERNAL_COUSINS_GRANDSON)&&this.heirnb > 0)
+            return true;
+        else return false;
     }
 
     public boolean isCousinSon()
     {
-        return this.heirtype.equals(COUSINS_SON);
+        if (this.heirtype.equals(COUSINS_SON)&&this.heirnb > 0)
+            return true;
+        else return false;
     }
 
 }
