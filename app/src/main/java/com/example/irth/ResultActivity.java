@@ -2,13 +2,18 @@ package com.example.irth;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.TextView;
+
+import com.google.android.material.button.MaterialButton;
 
 public class ResultActivity extends AppCompatActivity {
 
-    TextView result,heir1, heir2, heir3, heir4 ,heir5, heir6, heir7, heir8, heir9, heir10, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10;
+    TextView result,legacy,heir1, heir2, heir3, heir4 ,heir5, heir6, heir7, heir8, heir9, heir10, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10;
     String string;
+    MaterialButton btnmodifier;
 
 
     @Override
@@ -16,7 +21,11 @@ public class ResultActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_result);
 
+        btnmodifier = (MaterialButton) findViewById(R.id.btnmodifier);
+
         result = (TextView) findViewById(R.id.titleresult);
+
+        legacy = (TextView) findViewById(R.id.txtl);
 
         heir1 = (TextView) findViewById(R.id.heir1txt);
         heir2 = (TextView) findViewById(R.id.heir2txt);
@@ -40,7 +49,7 @@ public class ResultActivity extends AppCompatActivity {
         p9 = (TextView) findViewById(R.id.portion9txt);
         p10 = (TextView) findViewById(R.id.portion10txt);
 
-
+        String l = getIntent().getStringExtra("legacy");
         String h1 = getIntent().getStringExtra("heir1name");
         String pn1 = getIntent().getStringExtra("portion1");
         String pn2 = getIntent().getStringExtra("portion2");
@@ -53,6 +62,8 @@ public class ResultActivity extends AppCompatActivity {
         String pn9 = getIntent().getStringExtra("portion9");
         String pn10 = getIntent().getStringExtra("portion10");
 
+
+        legacy.setText(l);
         heir1.setText(h1);
         p1.setText(pn1);
         p2.setText(pn2);
@@ -78,7 +89,13 @@ public class ResultActivity extends AppCompatActivity {
                 + heir9.getText().toString()+"\t"+p9.getText().toString()+"\n"
                 + heir10.getText().toString()+"\t"+p10.getText().toString()+"\n";
 
-
+        btnmodifier.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), Calculator.class);
+                startActivity(intent);
+            }
+        });
 
 
 

@@ -27,7 +27,29 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:text="Legacy  :"
+            android:textColor="@color/white"
+            android:id="@+id/txtl"
             android:layout_below="@+id/titleresult"
+            android:textSize="20sp"
+            android:layout_marginLeft="40dp"
+            android:layout_marginBottom="20dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/lamounth"
+            android:textColor="@color/white"
+            android:textSize="20dp"
+            android:text="00000"
+            android:layout_below="@id/titleresult"
+            android:layout_toRightOf="@id/txtl"
+            android:layout_marginLeft="30dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/txtl"
             android:text="Heir1  :"
             android:textSize="20sp"
             android:textColor="@color/white"
@@ -38,7 +60,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="portion1"
-            android:layout_below="@+id/titleresult"
+            android:layout_below="@+id/txtl"
             android:layout_toRightOf="@+id/heir1txt"
             android:textSize="20dp"
             android:layout_marginLeft="30dp"
@@ -261,7 +283,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/heir10txt"
-            android:layout_centerHorizontal="true"
+            android:layout_marginStart="50dp"
             android:layout_marginTop="30dp"
             android:textSize="16dp"
             android:text="Export File"
@@ -269,6 +291,21 @@
             android:backgroundTint="#EEBC1D"
             android:padding="15dp"
             android:layout_marginBottom="20dp"/>
+
+        <com.google.android.material.button.MaterialButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/btnmodifier"
+            android:layout_below="@+id/portion10txt"
+            android:layout_marginTop="30dp"
+            android:layout_marginStart="250dp"
+            android:text="Modifier"
+            android:textSize="16dp"
+            android:textColor="@color/black"
+            android:backgroundTint="#EEBC1D"
+            android:padding="15dp"
+            android:layout_marginBottom="20dp"/>
+
 
 
 

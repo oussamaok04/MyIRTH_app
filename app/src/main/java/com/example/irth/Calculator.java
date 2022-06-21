@@ -244,6 +244,8 @@ public class Calculator extends AppCompatActivity {
                         String mgmp = String.valueOf(mgmotherportion);
                         String pgmp = String.valueOf(pgmotherportion);
 
+                        String leg = String.valueOf(deceased.getLegacy());
+
 
                         DBHelper db = new DBHelper(Calculator.this);
                         List<Heir> theheirs = deceased.getHeirs();
@@ -265,6 +267,7 @@ public class Calculator extends AppCompatActivity {
                         intent.putExtra("portion1", gfp);
                         intent.putExtra("portion1", mgmp);
                         intent.putExtra("portion1", pgmp);
+                        intent.putExtra("legacy", leg);
                         startActivity(intent);
                     }
                 }catch (Exception e){
